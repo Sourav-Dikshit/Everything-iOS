@@ -94,3 +94,8 @@ let men = Men(age: 25, name: "Virat", gender: "Male", maritialStatus: "Married")
 // A class can have two or more methods having same method name but different parameters. Eg- Class Person has two methods Play() having diff arguments.
 
 // Method Overriding - Eg- We override viewDidLoad() when we inherit UIViewController
+
+
+// Polymorphism -
+
+
