@@ -97,5 +97,58 @@ let men = Men(age: 25, name: "Virat", gender: "Male", maritialStatus: "Married")
 
 
 // Polymorphism -
+// Same object can behave differently
 
 
+class Player {
+    let name:  String
+    
+    init(name: String){
+        self.name = name
+    }
+    
+    func play() {
+    }
+}
+
+class Batsman: Player {
+    override func play() {
+        bat()
+    }
+    
+    func bat() {
+        print("\(name) is Batting")
+    }
+}
+
+class Bowler: Player {
+    override func play() {
+        bowl()
+    }
+    
+    func bowl() {
+        print("\(name) is Bowling")
+    }
+}
+
+class CricketTeam {
+    let name: String
+    var players: [Player]
+    
+    init (name: String, players: [Player]) {
+        self.name = name
+        self.players = players
+    }
+    
+    func play () {
+        for player in players {
+            player.play()
+        }
+    }
+}
+
+let viratKohli = Batsman(name: "Virat Kohli")
+let bhumrah = Bowler(name: "Jashprit Bhumrah")
+
+let indianCricketTeam = CricketTeam(name: "IndianCricketTeam", players: [viratKohli, bhumrah])
+indianCricketTeam.play()
