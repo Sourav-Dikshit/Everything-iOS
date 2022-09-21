@@ -156,3 +156,74 @@ let objAreaCalculator = AreaCalculator()
 let objRectangle = Rectangle(width: 2, height: 3)
 let objTringle = Tringle(base: 5, height: 6)
 objAreaCalculator.area(shape: objTringle)
+
+
+// 3. LSV - Liskov's substitution principle
+// Source - https://www.youtube.com/watch?v=VAA6lZsODh4&list=PLb5R4QC2DtFuC7WzUd5bJP3tdVsUcI8E8&index=4
+
+// i. Child class should not modify anything of parent class in inheritance. Base class should be used as it is.
+
+// Let's break Liskov's substitution principle
+
+class Rectangle1 {
+    var width: Double = 0
+    var length: Double = 0
+    
+    var area: Double {
+        return width * length
+    }
+}
+
+class Squre: Rectangle1 {
+    
+    override var width : Double {
+        didSet {
+            length = width
+        }
+    }
+}
+
+let objRecta = Rectangle1()
+objRecta.width = 5
+objRecta.length = 6
+
+print(objRecta.area)
+
+let objSqure = Squre()
+objSqure.width = 5
+
+print(objSqure.area)
+
+// Here we are breaking LSV because we are modifying base class variable in child class. Let's make it more clean
+
+protocol Shape1 {
+    var area: Double { get }
+}
+
+class Rectangle2: Shape1 {
+    var width: Double = 0
+    var length: Double = 0
+    
+    var area: Double {
+        return width * length
+    }
+}
+
+class Squre1: Shape1 {
+    var width: Double = 0
+    
+    var area: Double {
+        return width * width
+    }
+}
+
+let objRecta1 = Rectangle2()
+objRecta1.width = 5
+objRecta1.length = 6
+
+print(objRecta1.area)
+
+let objSqure1 = Squre()
+objSqure1.width = 5
+
+print(objSqure.area)
