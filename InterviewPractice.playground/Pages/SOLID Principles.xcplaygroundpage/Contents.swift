@@ -90,3 +90,69 @@ let objEmployee = Employee1(httpHandler: HTTPHandler(), parser: Parser(), databa
 // i. Neat Code.
 // ii. Can test individual functions now.
 // iii. Each class is responsible for each responsibility.
+
+
+// 2. Open & Closed principle
+// Source:- https://www.youtube.com/watch?v=WJznwyuOHZc&list=PLb5R4QC2DtFuC7WzUd5bJP3tdVsUcI8E8&index=3
+
+// i. Open & closed principle means open for extension and closed for modification.
+// ii. Use protocols for declaring functions and classes will extend it.
+
+protocol Shape {
+    func calculateArea() -> Double
+}
+
+
+// These Classes Rectangle and Circle & Tringle are open for extension by extending Shape Protocol
+class Rectangle: Shape {
+    let width: Double
+    let height: Double
+    
+    init (width: Double, height: Double) {
+        self.width = width
+        self.height = height
+    }
+    
+    func calculateArea() -> Double {
+        return height * width
+    }
+}
+
+class Circle: Shape {
+    let radious: Double
+    
+    init (radious: Double) {
+        self.radious = radious
+    }
+    
+    func calculateArea() -> Double {
+        return Double.pi * radious * radious
+    }
+}
+
+class Tringle: Shape {
+    let base: Double
+    let height: Double
+    
+    init(base: Double, height: Double){
+        self.base = base
+        self.height = height
+    }
+    
+    func calculateArea() -> Double {
+        return 1/2 * base * height
+    }
+}
+
+class AreaCalculator {
+   
+    func area(shape: Shape) {
+       print(shape.calculateArea())
+    } // This function is closed for modification
+}
+
+
+let objAreaCalculator = AreaCalculator()
+let objRectangle = Rectangle(width: 2, height: 3)
+let objTringle = Tringle(base: 5, height: 6)
+objAreaCalculator.area(shape: objTringle)
