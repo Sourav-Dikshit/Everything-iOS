@@ -227,3 +227,103 @@ let objSqure1 = Squre()
 objSqure1.width = 5
 
 print(objSqure.area)
+
+
+// 4. Interface Segregation Principle
+
+
+// If you are not careful with protocols we may end up getting fat protocol issue.
+
+protocol Humans {
+    func goToWork()
+    func buyHouse()
+    func eat()
+    func sleep()
+}
+
+class Person: Humans {
+    func goToWork() {
+        print("A person goes to work")
+    }
+    
+    func buyHouse() {
+        print("A person buy a house")
+    }
+    
+    func eat() {
+        print("A person eats")
+    }
+    
+    func sleep() {
+        print("A person sleeps")
+    }
+}
+
+class Lion: Humans {
+    func goToWork() {
+        <#code#>
+    } //Extra Functionality
+    
+    func buyHouse() {
+        <#code#>
+    } //Extra Functionality
+    
+    func eat() {
+        <#code#>
+    }
+    
+    func sleep() {
+        <#code#>
+    }
+}
+
+// Here Lion implements Humans but it has extra set of functionalities that a class Lion does not need because Lion does not go to work or it does not but a house either. So this is Fat protocol issue. Make sure class has only those functionalities which class needs.
+// Let's see how to resolve fat protocol prob,
+
+protocol Mamal {
+    func eat()
+    func sleep()
+}
+
+protocol Human: Mamal {
+    func goToWork()
+    func buyAHouse()
+}
+
+protocol Animal: Mamal {
+    func hunt()
+}
+
+class Person1: Human {
+    func goToWork() {
+        <#code#>
+    }
+    
+    func buyAHouse() {
+        <#code#>
+    }
+    
+    func eat() {
+        <#code#>
+    }
+    
+    func sleep() {
+        <#code#>
+    }
+}
+
+class Lion1: Animal {
+    func hunt() {
+        <#code#>
+    }
+    
+    func eat() {
+        <#code#>
+    }
+    
+    func sleep() {
+        <#code#>
+    }
+}
+
+// Dependency Inversion Principle
