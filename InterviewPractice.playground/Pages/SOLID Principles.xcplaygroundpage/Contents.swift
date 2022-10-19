@@ -277,7 +277,7 @@ class Lion: Humans {
     }
 }
 
-// Here Lion implements Humans but it has extra set of functionalities that a class Lion does not need because Lion does not go to work or it does not but a house either. So this is Fat protocol issue. Make sure class has only those functionalities which class needs.
+// Here Lion implements Humans but it has extra set of functionalities that a class Lion does not need because Lion does not go to work or it does not buy a house either. So this is Fat protocol issue. Make sure class has only those functionalities which class needs.
 // Let's see how to resolve fat protocol prob,
 
 protocol Mamal {
